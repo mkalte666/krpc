@@ -157,7 +157,7 @@ namespace KRPC.SpaceCenter.Services.Parts
             get {
                 if (!Active)
                     return ITorqueProviderExtensions.zero;
-                return rcs.GetPotentialTorque ();
+                return rcs.GetPotentialTorque () * (1000f / rcs.thrusterTransforms.Count);
             }
         }
 
