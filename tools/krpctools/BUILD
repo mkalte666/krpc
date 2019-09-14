@@ -75,7 +75,6 @@ py_sdist(
 deps = [
     '//client/python',
     '@python_protobuf//file',
-    '@python_enum34//file',
     '@python_six//file',
     '@python_jinja2//file',
     '@python_markupsafe//file'
@@ -85,7 +84,7 @@ py_script(
     name = 'clientgen',
     script = 'krpc-clientgen',
     pkg = ':krpctools',
-    deps = deps,
+    deps = deps + ['@python_enum34//file'],
     visibility = ['//visibility:public']
 )
 
@@ -93,7 +92,7 @@ py_script(
     name = 'docgen',
     script = 'krpc-docgen',
     pkg = ':krpctools',
-    deps = deps,
+    deps = deps + ['@python_enum34//file'],
     visibility = ['//visibility:public']
 )
 
@@ -111,7 +110,7 @@ py_test(
     name = 'test2',
     src = ':krpctools',
     pkg = 'krpctools-'+python_version,
-    deps = deps,
+    deps = deps + ['@python_enum34//file'],
     size = 'small'
 )
 
@@ -127,7 +126,7 @@ py_lint_test(
     name = 'lint',
     pkg = ':krpctools',
     pkg_name = 'krpctools',
-    deps = deps,
+    deps = deps + ['@python_enum34//file'],
     pylint_config = 'pylint.rc',
     size = 'small'
 )
